@@ -16,6 +16,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_16.2.app
+
       - name: Resolve Package Dependencies
         run: xcodebuild -resolvePackageDependencies -project uPic.xcodeproj
 
@@ -27,6 +30,7 @@ jobs:
             -scheme "uPic(Release)" \
             -configuration Release \
             -derivedDataPath ./build \
+            -arch arm64 \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO
 
